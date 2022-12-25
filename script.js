@@ -11,14 +11,18 @@ let timer;
 
 let slider = document.getElementById("slider");
 let nextButton = document.getElementById("next");
+let prevButton = document.getElementById("prev");
 let startButton = document.getElementById("start");
+let stopButton = document.getElementById("stop");
 
 let miniatures = document.getElementsByClassName("mini");
-let effectButton = document.getElementsById("get_effect");
+// let effectButton = document.getElementById("get_effect");
 
 nextButton.addEventListener("click", next);
+prevButton.addEventListener("click", prev);
 startButton.addEventListener("click", start);
-effectButton.addEventListener("click", getEffect);
+stopButton.addEventListener("click", stop);
+// effectButton.addEventListener("click", getEffect);
 
 // function next() {
 //   if (i >= arrSrc.length - 1) {
@@ -30,13 +34,22 @@ effectButton.addEventListener("click", getEffect);
 // }
 
 function start() {
-  let timer;
+  //  let timer;
   timer = setInterval(function () {
     next();
   }, 3000);
 }
+function stop() {
+  clearInterval(timer);
+}
 
 function next() {
+  addEffect();
+  setTimeout(changeNext, 500);
+  setTimeout(removeEffect, 500);
+}
+
+function changeNext() {
   i++;
   if (i >= arrSrc.length) {
     i = 0;
@@ -46,10 +59,12 @@ function next() {
 
 function prev() {
   i--;
-  if (i <= 0) {
+  if (i < 0) {
     i = arrSrc.length - 1;
   }
-  slider.src = arrSrc[i];
+  addEffect();
+  setTimeout(changeEffect, 1000);
+  //slider.src = arrSrc[i];
 }
 
 function showSlide(event) {
@@ -61,24 +76,22 @@ function showSlide(event) {
 for (let j = 0; j < miniatures.length; j++) {
   miniatures[j].addEventListener("click", showSlide);
 }
-function changeEffect() {
+function changeEffect(event) {
+  //slider.src = arrSrc[i];
   removeEffect();
+  effect = event.target.value;
+  // addEffect();
   //...
 }
 
 function addEffect() {
-  slider.classList.add("effect");
+  slider.classList.add(effect);
 }
 
 function removeEffect() {
-  slider.classList.remove("effect");
+  slider.classList.remove(effect);
 }
-
-function getEffect() {
-  let ef = document.forms.effects;
-  for (let i = 0; i < ef.length; i++) {
-    if (ef[i].checked) {
-      effect = ef[i].value;
-    }
-  }
+let ef = document.forms.effects;
+for (let i = 0; i < ef.length; i++) {
+  ef[i].addEventListener("change", changeEffect);
 }

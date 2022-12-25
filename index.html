@@ -11,6 +11,7 @@
         height: 360px;
         overflow: hidden;
       }
+
       .slider {
         position: relative;
         left: 0;
@@ -19,8 +20,8 @@
         object-fit: cover;
         transition: all 0.5s;
         opacity: 1;
-        overflow: hidden;
       }
+
       .mini {
         height: 80px;
         width: 80px;
@@ -47,14 +48,17 @@
     <img src="./images/queen.jpg" alt="" class="mini" />
     <img src="./images/who.jpg" alt="" class="mini" />
     <br />
+    <button id="prev">&lt;</button>
     <button id="next">&gt;</button>
-    <button id="start">start</button>
+
+    <button id="start">&#9658;</button>
+    <button id="stop">&#9632;</button>
     <form action="" name="effects">
       <input type="radio" name="effect" value="none" />none<br />
       <input type="radio" name="effect" value="go" />go<br />
       <input type="radio" name="effect" value="fade" />fade<br />
       <br />
-      <input type="button" id="get_effect" value="Get effect" />
+      <!-- <input type="button" value="Get effect" id="get_effect" /> -->
     </form>
     <script src="./script.js"></script>
   </body>
