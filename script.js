@@ -100,3 +100,4 @@ let ef = document.forms.effects;
 for (let i = 0; i < ef.length; i++) {
   ef[i].addEventListener("change", changeEffect);
 }
+//
