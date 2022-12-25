@@ -58,13 +58,18 @@ function changeNext() {
 }
 
 function prev() {
+  addEffect();
+  setTimeout(changePrev, 500);
+  setTimeout(removeEffect, 500);
+  //slider.src = arrSrc[i];
+}
+
+function changePrev() {
   i--;
   if (i < 0) {
     i = arrSrc.length - 1;
   }
-  addEffect();
-  setTimeout(changeEffect, 1000);
-  //slider.src = arrSrc[i];
+  slider.src = arrSrc[i];
 }
 
 function showSlide(event) {
